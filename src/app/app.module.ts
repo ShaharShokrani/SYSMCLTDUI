@@ -17,6 +17,7 @@ import { CustomerStartComponent } from './customers/customer-start/customer-star
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FooterComponent } from './footer/footer.component';
     CustomerItemComponent,
     CustomerStartComponent,
     CustomerEditComponent,
-    FooterComponent
+    FooterComponent,
+    DropdownDirective
   ],
   imports: [
     RouterModule,

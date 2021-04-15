@@ -1,19 +1,20 @@
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ customer.name }}</h1>
+      <h1>{{ customer.name }} ({{ customer.customerNumber}})</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
       <div
-        class="btn-group"
+        class="btn-group dropdown"
         appDropdown>
         <button
           type="button"
-          class="btn btn-primary dropdown-toggle">
+          class="btn btn-primary dropdown-toggle"
+          data-toggle="dropdown">
           Manage Customer <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">          
+        <ul class="dropdown-menu" appDropdown>          
           <li><a style="cursor: pointer;" (click)="onEditCustomer()">Edit Customer</a></li>
           <li><a style="cursor: pointer;" (click)="onDeleteCustomer()">Delete Customer</a></li>
         </ul>
@@ -22,16 +23,12 @@
   </div>
   <div class="row">
     <div class="col-xs-12">
-      {{ customer.customerNumber}}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
+      Contacts:
       <ul class="list-group">
         <li
           class="list-group-item"
           *ngFor="let contact of customer.contacts">
-          {{ contact.fullName }} - {{ contact.officeNumber }} - {{ contact.email }}
+          Full Name: {{ contact.fullName }}. Office Number: {{ contact.officeNumber }}. Email: {{ contact.email }}
         </li>
       </ul>
     </div>

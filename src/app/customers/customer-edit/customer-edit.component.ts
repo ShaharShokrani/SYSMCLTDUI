@@ -31,6 +31,21 @@ export class CustomerEditComponent implements OnInit {
     });
   }
 
+  onAddContact() {
+    (<FormArray>this.customerForm.get('contacts')).push(
+      new FormGroup({
+        fullName: new FormControl(null, Validators.required),
+        officeNumber: new FormControl(null),
+        email: new FormControl(null, Validators.email)
+      })
+    );
+  }
+
+  onDeleteContact(index: number) {
+    (<FormArray>this.customerForm.get('contacts')).removeAt(index);
+  }
+
+
   onSubmit() {
     console.log("CustomerEditComponent.onSubmit");
     // const newCustomer = new Customer(
@@ -45,19 +60,8 @@ export class CustomerEditComponent implements OnInit {
     this.onCancel();
   }
 
-  onAddContact() {
-    (<FormArray>this.customerForm.get('contacts')).push(
-      new FormGroup({
-        fullName: new FormControl(null, Validators.required)
-      })
-    );
-  }
-
-  onDeleteContact(index: number) {
-    (<FormArray>this.customerForm.get('contacts')).removeAt(index);
-  }
-
   onCancel() {
+    console.log("CustomerEditComponent.onCancel");
     this.router.navigate(['/customers']);
   }
 
@@ -74,7 +78,9 @@ export class CustomerEditComponent implements OnInit {
         for (let contact of customer.contacts) {
           customerContacts.push(
             new FormGroup({
-              fullName: new FormControl(contact.fullName, Validators.required)
+              fullName: new FormControl(contact.fullName, Validators.required),
+              officeNumber: new FormControl(contact.officeNumber),
+              email: new FormControl(contact.email)
             })
           );
         }
